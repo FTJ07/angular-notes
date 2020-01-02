@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'notes';
+  itemName = 'notes';
+
+  constructor() {
+    
+  }
+
+  changeItem(){
+    this.itemName = 'Changes happend'
+  }
 }
