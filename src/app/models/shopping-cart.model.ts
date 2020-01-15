@@ -1,5 +1,5 @@
 export class ShoppingCartModel {
-  items: any;
+ items: any;
 
  get totalItemsCount() {
   let count = 0;

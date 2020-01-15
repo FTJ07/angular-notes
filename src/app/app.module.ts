@@ -28,6 +28,8 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
 import { CategoryService } from './services/category.service';
 import { FormsModule } from '@angular/forms';
 import { ProductCartComponent } from './product-cart/product-cart.component';
+import { CheckoutService } from './services/checkout.service';
+import { AdminModule } from './modules/admin.module';
 
 @NgModule({
   declarations: [
@@ -39,8 +41,8 @@ import { ProductCartComponent } from './product-cart/product-cart.component';
     CheckOutComponent,
     OrderSuccessComponent,
     MyOrdersComponent,
-    AdminProductsComponent,
-    AdminOrdersComponent,
+    // AdminProductsComponent,
+    // AdminOrdersComponent,
     LoginComponent,
     ProductFormComponent,
     ProductCartComponent
@@ -48,6 +50,7 @@ import { ProductCartComponent } from './product-cart/product-cart.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    AdminModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -76,7 +79,7 @@ import { ProductCartComponent } from './product-cart/product-cart.component';
         canActivate: [AuthGuardService]
       },
       {
-        path: 'order-success',
+        path: 'order-success/:id',
         component: OrderSuccessComponent,
         canActivate: [AuthGuardService]
       },
@@ -94,24 +97,25 @@ import { ProductCartComponent } from './product-cart/product-cart.component';
         path: 'admin/products/:id',
         component: ProductFormComponent,
         canActivate: [AuthGuardService]
-      },
-      {
-        path: 'admin/products',
-        component: AdminProductsComponent,
-        canActivate: [AuthGuardService]
-      },
-      {
-        path: 'admin/orders',
-        component: AdminOrdersComponent,
-        canActivate: [AuthGuardService]
       }
+      // {
+      //   path: 'admin/products',
+      //   component: AdminProductsComponent,
+      //   canActivate: [AuthGuardService]
+      // },
+      // {
+      //   path: 'admin/orders',
+      //   component: AdminOrdersComponent,
+      //   canActivate: [AuthGuardService]
+      // }
     ])
   ],
   providers: [
     AuthService,
     AuthGuardService,
     AdminAuthGuardService,
-    CategoryService
+    CategoryService,
+    CheckoutService
   ],
   bootstrap: [AppComponent]
 })

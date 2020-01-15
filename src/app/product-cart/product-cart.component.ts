@@ -19,6 +19,7 @@ export class ProductCartComponent implements OnInit {
   }
 
   addToCart() {
+    console.log("okk");
     this.shoppingCartService.addToCart(this.product);
   }
 
@@ -27,6 +28,7 @@ export class ProductCartComponent implements OnInit {
   }
 
   getQuanity() {
+    console.log("qqq");
     if (!this.shoppingCart) return 0;
     let item = this.shoppingCart.items[this.product.id];
     return item ? item.quantity : 0;

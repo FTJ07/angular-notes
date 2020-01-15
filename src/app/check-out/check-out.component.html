@@ -1,1 +1,29 @@
-<p>check-out works!</p>
+<div class="row">
+ <div class="col-md-6">
+  <form (ngSubmit)="f.valid && placeOrder(f)" #f="ngForm">
+   <div class="form-group">
+    <label for="">Name</label>
+    <input type="text" ngModel #userName="ngModel" name="userName" required class="form-control" />
+    <div class="alert alert-danger" *ngIf="userName.invalid && f.submitted">
+      Name required
+    </div>
+   </div>
+   <div class="form-group">
+    <label for="">Address</label>
+    <input type="text" ngModel #address1="ngModel" name="address1" required class="form-control" /> <br>
+    <input type="text" ngModel #address2="ngModel" name="address2" class="form-control" />
+    <div *ngIf="address1.invalid && f.submitted">
+      At least provide one address
+    </div>
+   </div>
+
+   <div class="form-group">
+    <label for="">City</label>
+    <input type="text" ngModel #city="ngModel" name="city" class="form-control" />
+   </div>
+   <button type="submit" class="btn btn-primary">
+    Save
+   </button>
+  </form>
+ </div>
+

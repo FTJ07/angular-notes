@@ -9,7 +9,6 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
   styleUrls: ['./bs-navbar.component.css']
 })
 export class BsNavbarComponent implements OnInit {
-  cart$;
   shoppingCartItemCount: number; 
 
   constructor(
@@ -21,8 +20,11 @@ export class BsNavbarComponent implements OnInit {
   async ngOnInit() {  
     (await this.shoppingCartService.getCart()).valueChanges().subscribe((cart: any) => {
       this.shoppingCartItemCount = 0;
-      for( let productId in cart.items) {
-        this.shoppingCartItemCount +=  cart.items[productId].quantity;
+      if(cart) 
+      {
+        for( let productId in cart.items) {
+          this.shoppingCartItemCount +=  cart.items[productId].quantity;
+        }
       }
     });
     

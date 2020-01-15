@@ -41,6 +41,11 @@ export class ShoppingCartService {
     this.updateItemQuanity(product, -1)
   }
 
+  async clearCart() {
+    let cartId = await this.getOrCreateCart();
+    return this.db.object("/shopping-carts/" + cartId).remove();
+  }
+
   private async updateItemQuanity(product, change) {
     let cartId = await this.getOrCreateCart();
     let item =  this.getItem(cartId, product.id).valueChanges();
@@ -56,5 +61,6 @@ export class ShoppingCartService {
     let cartId = await this.getOrCreateCart();
     return this.db.object("/shopping-carts/" + cartId);
   }
+
 
 }
